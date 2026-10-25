@@ -1,1 +1,116 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malak Python Lab</title>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f0ff;
+  margin: 0;
+  padding: 25px;
+}
+main {
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+}
+h1 { color: #7041a6; }
+textarea {
+  width: 100%;
+  height: 220px;
+  box-sizing: border-box;
+  padding: 15px;
+  font: 16px monospace;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+}
+button {
+  background: #7041a6;
+  color: white;
+  border: 0;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+pre {
+  background: #202124;
+  color: #a9f5a9;
+  padding: 15px;
+  min-height: 60px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+</style>
+</head>
+<body>
+<main>
+<h1>🐍 Malak Python Lab</h1>
+<p>Write Python code and click Run to see the result.</p>
+
+<textarea id="code">print("Hello, Malak!")
+print("Welcome to Python Lab!")
+x = 10
+y = 20
+print("Total:", x + y)</textarea>
+
+<br>
+<button id="run">▶ Run Python</button>
+<p id="status">Ready to run Python.</p>
+<pre id="output">Your result will appear here.</pre>
+</main>
+
+<script>
+let pyodide = null;
+
+document.getElementById("run").addEventListener("click", async () => {
+  const button = document.getElementById("run");
+  const output = document.getElementById("output");
+  const status = document.getElementById("status");
+
+  button.disabled = true;
+  output.textContent = "";
+  status.textContent = "Loading Python...";
+
+  try {
+    if (!pyodide) {
+      pyodide = await loadPyodide();
+    }
+
+    pyodide.setStdout({
+      batched: (text) => {
+        output.textContent += text + "\n";
+      }
+    });
+
+    pyodide.setStderr({
+      batched: (text) => {
+        output.textContent += text + "\n";
+      }
+    });
+
+    status.textContent = "Running...";
+    await pyodide.runPythonAsync(
+      document.getElementById("code").value
+    );
+
+    status.textContent = "Finished!";
+    if (!output.textContent) {
+      output.textContent = "Code executed successfully.";
+    }
+  } catch (error) {
+    status.textContent = "Something went wrong.";
+    output.textContent += String(error);
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
