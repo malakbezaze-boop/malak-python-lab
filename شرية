@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="شرية SHERYA — مساعد جزائري يساعدك على اتخاذ قرار شراء يناسب ميزانيتك واحتياجاتك، ويربط المحلات بالموردين والموزعين.">
+<title>شرية SHERYA | اشري بوعي</title>
+<style>
+:root{--ink:#29223b;--muted:#746b80;--purple:#6d3cc7;--pink:#e978a9;--cream:#fffaf5;--line:#eee5f4;--green:#277b61;--soft:#f5efff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+button,input,select,textarea{font:inherit}
+button,a{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin:auto}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.35rem;color:var(--purple)}
+.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--pink));color:white;font-size:1.35rem}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap;font-size:.92rem}
+.navlinks a:hover{color:var(--purple)}
+.btn{border:0;border-radius:12px;padding:11px 17px;font-weight:700;background:var(--purple);color:#fff;display:inline-block}
+.btn:hover{filter:brightness(.95)}
+.btn.secondary{background:#f4eafa;color:var(--purple)}
+.hero{padding:66px 0 45px;background:radial-gradient(circle at 15% 15%,#fce7f1,transparent 32%),radial-gradient(circle at 90% 20%,#e9dcff,transparent 35%),var(--cream)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:36px}
+.eyebrow{color:var(--purple);font-weight:800}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.22;margin:12px 0}
+.hero h1 span{color:var(--pink)}
+.hero p{font-size:1.08rem;color:var(--muted);max-width:650px}
+.hero-card,.card{background:white;border:1px solid var(--line);border-radius:22px;padding:23px;box-shadow:0 12px 35px #42236b0c}
+.hero-card .big{font-size:3.6rem}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.stat{background:#fff;border:1px solid var(--line);padding:12px;border-radius:14px;text-align:center}
+.stat strong{display:block;color:var(--purple);font-size:1.15rem}
+.section{padding:58px 0}
+.section.alt{background:#f8f3ff}
+.section-head{max-width:720px;margin-bottom:27px}
+.section-head h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:0 0 8px}
+.section-head p{margin:0;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.field{margin:13px 0}
+.field label{display:block;font-weight:700;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid #ddd0eb;border-radius:11px;padding:11px;background:#fff;color:var(--ink)}
+.field textarea{min-height:90px;resize:vertical}
+.hint{font-size:.86rem;color:var(--muted)}
+.checks{display:flex;gap:9px;flex-wrap:wrap}
+.checks label{border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:#fff;font-weight:400}
+.checks input{width:auto}
+.result{background:#f6f0ff;border:1px dashed #cbb8ed;border-radius:15px;padding:16px;margin-top:16px;min-height:65px}
+.result h3{margin:0 0 6px}
+.result ul{margin:8px 0;padding-right:22px}
+.pill{display:inline-block;background:#f5e8f2;color:#8c3d72;border-radius:99px;padding:4px 10px;font-size:.82rem;font-weight:700}
+.feature-icon{font-size:1.7rem}
+.feature h3{margin:7px 0}
+.feature p{margin:0;color:var(--muted);font-size:.94rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}
+.tab{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;color:var(--ink);font-weight:700}
+.tab.active{background:var(--purple);color:white}
+.hidden{display:none!important}
+.listing{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff}
+.listing h3{margin:0 0 5px}
+.listing p{margin:4px 0;color:var(--muted)}
+.message{background:#f5f0ff;border-radius:13px;padding:12px;margin-top:10px;white-space:pre-wrap}
+.notice{font-size:.9rem;background:#fff5df;border:1px solid #f0d99b;padding:13px 15px;border-radius:12px;color:#735719}
+.faq details{padding:15px 0;border-bottom:1px solid var(--line)}
+.faq summary{font-weight:800;cursor:pointer}
+.footer{background:#29223b;color:#fff;padding:35px 0}
+.footer p{color:#ddd5e8}
+.footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.small{font-size:.85rem;color:var(--muted)}
+.toast{position:fixed;bottom:20px;left:20px;background:#29223b;color:#fff;padding:12px 18px;border-radius:12px;display:none;z-index:30}
+@media(max-width:780px){
+.hero-grid,.grid2,.grid3{grid-template-columns:1fr}
+.nav{align-items:flex-start;flex-direction:column}
+.navlinks{gap:12px}
+.hero{padding-top:40px}
+.statrow{grid-template-columns:1fr 1fr 1fr}
+.section{padding:42px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+ <div class="wrap nav">
+  <a class="brand" href="#home">
+   <span class="logo">ش</span>
+   <span>شرية <small dir="ltr">SHERYA</small></span>
+  </a>
+  <nav class="navlinks" aria-label="التنقل">
+   <a href="#how">كيف تعمل؟</a>
+   <a href="#consumer">مساعد الشراء</a>
+   <a href="#business">للمحلات والموردين</a>
+   <a href="#about">عن شرية</a>
+  </nav>
+  <a class="btn" href="#consumer">ابدأ الآن</a>
+ </div>
+</header>
+
+<main id="home">
+
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="eyebrow">منصة جزائرية لاتخاذ قرار شراء أذكى</span>
+   <h1>اشري بوعي،<br><span>على قدّ ميزانيتك.</span></h1>
+   <p>شرية تساعدك ترتّب احتياجاتك قبل ما تصرف دراهمك، وتفتح باب التواصل بين المحلات والموردين والموزعين. قرار الشراء يبدأ بفهم واش تحتاج وواش تقدر.</p>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+    <a class="btn" href="#consumer">جرّب مساعد الشراء</a>
+    <a class="btn secondary" href="#business">أنا صاحب محل أو مورد</a>
+   </div>
+   <div class="statrow">
+    <div class="stat"><strong>ميزانيتك</strong><span class="small">أولويّة</span></div>
+    <div class="stat"><strong>احتياجاتك</strong><span class="small">قبل الرغبات</span></div>
+    <div class="stat"><strong>تواصل</strong><span class="small">محلات وموردون</span></div>
+   </div>
+  </div>
+  <div class="hero-card">
+   <div class="big">🛍️💜</div>
+   <span class="pill">مثال توضيحي</span>
+   <h2>عندك 5,000 دج؟</h2>
+   <p>حدّد احتياجاتك الأساسية أولًا، خلّي مبلغًا احتياطيًا، وبعدها قارن الخيارات المتاحة بدل الشراء العشوائي.</p>
+   <div class="result">
+    <strong>فكرة شرية:</strong><br>
+    مش لازم تشري كل شيء اليوم. ابدأ بالأكثر ضرورة والأكثر استعمالًا.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="how">
+ <div class="wrap">
+  <div class="section-head">
+   <h2>كيف تعمل شرية؟</h2>
+   <p>ثلاث خطوات بسيطة تساعد على اتخاذ قرار شراء يناسب وضعك.</p>
+  </div>
+  <div class="grid3">
+   <article class="card feature">
+    <div class="feature-icon">💰</div>
+    <h3>1. أدخل الميزانية</h3>
+    <p>اكتب المبلغ المتوفر عندك وحدّد إن كنت تريد الاحتفاظ بجزء منه للطوارئ.</p>
+   </article>
+   <article class="card feature">
+    <div class="feature-icon">🧺</div>
+    <h3>2. رتّب احتياجاتك</h3>
+    <p>ميّز بين الضروري والمهم وما يمكن تأجيله، بدل الاعتماد على السعر وحده.</p>
+   </article>
+   <article class="card feature">
+    <div class="feature-icon">🧠</div>
+    <h3>3. راجع القرار</h3>
+    <p>تحصل على خطة أولية تساعدك على ترتيب الأولويات قبل الشراء.</p>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="consumer">
+ <div class="wrap">
+  <div class="section-head">
+   <h2>مساعد شرية للشراء الواعي</h2>
+   <p>املأ المعلومات، وسيقترح عليك الموقع طريقة لترتيب ميزانيتك. هذه أداة إرشادية وليست أسعارًا مباشرة من المتاجر.</p>
+  </div>
+  <div class="grid2">
+   <div class="card">
+    <div class="field">
+     <label for="budget">كم عندك ميزانية؟ (دج)</label>
+     <input id="budget" type="number" min="0" placeholder="مثال: 5000">
+    </div>
+    <div class="field">
+     <label for="reserve">المبلغ الذي تريد الاحتفاظ به (دج)</label>
+     <input id="reserve" type="number" min="0" placeholder="مثال: 500" value="0">
+    </div>
+    <div class="field">
+     <label>وش هي احتياجاتك؟ اختار ما ينطبق عليك</label>
+     <div class="checks">
+      <label><input type="checkbox" name="need" value="food"> مواد غذائية</label>
+      <label><input type="checkbox" name="need" value="home"> مستلزمات البيت</label>
+      <label><input type="checkbox" name="need" value="study"> دراسة</label>
+      <label><input type="checkbox" name="need" value="health"> صحة ونظافة</label>
+      <label><input type="checkbox" name="need" value="clothes"> ملابس</label>
+      <label><input type="checkbox" name="need" value="other"> احتياج آخر</label>
+     </div>
+    </div>
+    <div class="field">
+     <label for="priority">أهم حاجة عندك الآن</label>
+     <select id="priority">
+      <option value="essential">الضروريات اليومية</option>
+      <option value="urgent">حاجة مستعجلة</option>
+      <option value="study">الدراسة أو العمل</option>
+      <option value="future">توفير للمستقبل</option>
+     </select>
+    </div>
+    <div class="field">
+     <label for="notes">تفاصيل إضافية (اختياري)</label>
+     <textarea id="notes" placeholder="مثال: نحتاج مواد غذائية للأسبوع ومستلزمات دراسة"></textarea>
+    </div>
+    <button class="btn" id="planBtn">حلّل ميزانيتي</button>
+   </div>
+
+   <div class="card">
+    <h3>خطتك المقترحة</h3>
+    <p class="hint">ستظهر هنا بعد إدخال معلوماتك.</p>
+    <div class="result" id="planResult" aria-live="polite">
+     أدخل ميزانيتك واحتياجاتك ثم اضغط «حلّل ميزانيتي».
+    </div>
+    <p class="notice" style="margin-top:15px">
+     نصيحة: لا تشترِ شيئًا فقط لأنه مخفّض. اسأل نفسك: هل أحتاجه فعلًا؟ هل أستطيع دفع ثمنه دون التأثير على الضروريات؟
+    </p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="business">
+ <div class="wrap">
+  <div class="section-head">
+   <h2>فضاء المحلات والموردين والموزعين</h2>
+   <p>واجهة أولية لتنظيم طلبات المحلات وتكوين رسالة تواصل. لا تُرسل الرسائل تلقائيًا ولا تنشر بياناتك على الإنترنت في هذه النسخة.</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+   <button class="tab active" data-tab="shop">أنا صاحب محل</button>
+   <button class="tab" data-tab="supplier">أنا مورد أو موزّع</button>
+   <button class="tab" data-tab="directory">دليل تجريبي</button>
+  </div>
+
+  <div class="card" id="panel-shop">
+   <h3>سجّل طلب المحل</h3>
+   <div class="grid2">
+    <div class="field">
+     <label for="shopName">اسم المحل</label>
+     <input id="shopName" placeholder="اسم المحل">
+    </div>
+    <div class="field">
+     <label for="shopCity">الولاية / البلدية</label>
+     <input id="shopCity" placeholder="مثال: الجزائر العاصمة">
+    </div>
+    <div class="field">
+     <label for="shopGoods">المنتجات المطلوبة</label>
+     <input id="shopGoods" placeholder="مثال: زيت، سكر، مواد تنظيف">
+    </div>
+    <div class="field">
+     <label for="shopQty">الكمية أو تفاصيل الطلب</label>
+     <input id="shopQty" placeholder="مثال: كميات بالجملة، موعد التسليم">
+    </div>
+   </div>
+   <button class="btn" id="makeShopMsg">إنشاء رسالة طلب</button>
+   <div class="message hidden" id="shopMessage"></div>
+   <button class="btn secondary hidden" id="copyShopMsg">نسخ الرسالة</button>
+  </div>
+
+  <div class="card hidden" id="panel-supplier">
+   <h3>عرّف بخدماتك</h3>
+   <div class="grid2">
+    <div class="field">
+     <label for="supplierName">اسم المؤسسة / المورد</label>
+     <input id="supplierName" placeholder="اسم المؤسسة">
+    </div>
+    <div class="field">
+     <label for="supplierCity">الولاية / منطقة التوزيع</label>
+     <input id="supplierCity" placeholder="المناطق التي تخدمها">
+    </div>
+    <div class="field">
+     <label for="supplierGoods">المنتجات التي توفرها</label>
+     <input id="supplierGoods" placeholder="قائمة المنتجات">
+    </div>
+    <div class="field">
+     <label for="supplierContact">وسيلة التواصل التي تريد تضمينها</label>
+     <input id="supplierContact" placeholder="بريد أو رقم عمل (اختياري)">
+    </div>
+   </div>
+   <button class="btn" id="makeSupplierMsg">إنشاء بطاقة تعريف</button>
+   <div class="message hidden" id="supplierMessage"></div>
+   <button class="btn secondary hidden" id="copySupplierMsg">نسخ البطاقة</button>
+  </div>
+
+  <div class="card hidden" id="panel-directory">
+   <h3>كيف سيكون دليل شرية؟</h3>
+   <p>يمكن في النسخة القادمة عرض المحلات والموردين المسجلين، مع تصنيف حسب الولاية والمنتج. حاليًا لا توجد قاعدة بيانات أو حسابات مستخدمين مرتبطة بالموقع.</p>
+   <div class="notice">
+    هذه النسخة التجريبية لا تعرض أسماء شركات حقيقية ولا تؤكد توفر أي منتج. أضيفوا بيانات التواصل الحقيقية فقط بعد إعداد نظام آمن للموافقة والحفظ.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="about">
+ <div class="wrap">
+  <div class="section-head">
+   <h2>رؤية شرية</h2>
+   <p>مساعدة المستهلك الجزائري على اتخاذ قرارات شراء أكثر وعيًا، مع خلق مساحة رقمية تسهّل التواصل التجاري بين المحلات والموردين والموزعين.</p>
+  </div>
+  <div class="grid3">
+   <article class="card feature">
+    <div class="feature-icon">🎯</div>
+    <h3>رسالتنا</h3>
+    <p>ربط قرار الشراء بالميزانية والاحتياجات الفعلية، وليس بالسعر أو الإعلان فقط.</p>
+   </article>
+   <article class="card feature">
+    <div class="feature-icon">🤝</div>
+    <h3>شبكة تجارية</h3>
+    <p>تسهيل تنظيم الطلبات والتواصل بين المحلات ومورديها وموزعيها.</p>
+   </article>
+   <article class="card feature">
+    <div class="feature-icon">🇩🇿</div>
+    <h3>انطلاق من الجزائر</h3>
+    <p>تصميم بسيط باللغة العربية، قابل للتطوير ليلائم المستهلك والتاجر الجزائري.</p>
+   </article>
+  </div>
+
+  <div class="faq card" style="margin-top:22px">
+   <h3>أسئلة مهمة</h3>
+   <details>
+    <summary>هل شرية تقارن الأسعار الحقيقية الآن؟</summary>
+    <p>ليس بعد. هذه النسخة لا تتصل بمتاجر أو قاعدة أسعار مباشرة؛ الاقتراحات مبنية على معلومات الميزانية والاحتياجات التي تدخلها.</p>
+   </details>
+   <details>
+    <summary>هل يمكن للمستخدمين إنشاء حسابات وحفظ معلوماتهم؟</summary>
+    <p>ليس في النسخة الحالية. تحتاج هذه الوظائف إلى قاعدة بيانات وخدمة خلفية مع قواعد حماية للبيانات.</p>
+   </details>
+   <details>
+    <summary>هل الدردشة بين المحلات والموردين تعمل مباشرة؟</summary>
+    <p>لا تزال نموذجًا أوليًا. الأزرار هنا تنشئ رسالة يمكنك نسخها، ولا ترسلها إلى شخص آخر تلقائيًا.</p>
+   </details>
+  </div>
+
+  <p class="small" style="margin-top:15px">
+   تنبيه: هذه نسخة أولية للعرض والتجربة وليست خدمة تجارية مكتملة. لا تدخِل معلومات مالية حساسة أو بيانات شخصية خاصة.
+  </p>
+ </div>
+</section>
+
+</main>
+
+<footer class="footer">
+ <div class="wrap footer-grid">
+  <div>
+   <div class="brand" style="color:white"><span class="logo">ش</span> شرية SHERYA</div>
+   <p>اشري بوعي، على قدّ ميزانيتك.</p>
+  </div>
+  <div>
+   <strong>روابط سريعة</strong>
+   <p><a href="#consumer">مساعد الشراء</a> · <a href="#business">فضاء الأعمال</a> · <a href="#about">عن شرية</a></p>
+   <p class="small" style="color:#ddd5e8">© <span id="year"></span> SHERYA — نسخة أولية</p>
+  </div>
+ </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$('year').textContent = new Date().getFullYear();
+
+function toast(msg) {
+ const t = $('toast');
+ t.textContent = msg;
+ t.style.display = 'block';
+ setTimeout(() => t.style.display = 'none', 2400);
+}
+
+$('planBtn').addEventListener('click', () => {
+ const budget = Number($('budget').value);
+ const reserve = Math.max(0, Number($('reserve').value) || 0);
+ const needs = [...document.querySelectorAll('input[name="need"]:checked')]
+  .map(x => x.parentElement.textContent.trim());
+ const priority = $('priority').selectedOptions[0].textContent;
+ const notes = $('notes').value.trim();
+
+ if (!Number.isFinite(budget) || budget <= 0) {
+  $('planResult').innerHTML = '<strong>أدخل مبلغًا صحيحًا.</strong><p>مثال: 5000 دج.</p>';
+  return;
+ }
+
+ if (reserve > budget) {
+  $('planResult').innerHTML = '<strong>المبلغ الاحتياطي أكبر من الميزانية.</strong><p>عدّل المبلغين حتى تكون الخطة منطقية.</p>';
+  return;
+ }
+
+ const available = budget - reserve;
+ let essential = Math.round(available * .6);
+ let important = Math.round(available * .25);
+ let flexible = available - essential - important;
+ const items = needs.length ? needs.join('، ') : 'احتياجاتك الأساسية';
+
+ $('planResult').innerHTML = `
+  <h3>ملخص ميزانيتك</h3>
+  <p>الميزانية: <strong>${budget.toLocaleString('fr-DZ')} دج</strong></p>
+  <p>الاحتياطي: <strong>${reserve.toLocaleString('fr-DZ')} دج</strong></p>
+  <p>المتاح للتخطيط: <strong>${available.toLocaleString('fr-DZ')} دج</strong></p>
+  <hr>
+  <p>حسب المعلومات التي أدخلتها، احتياجاتك: <strong>${escapeHtml(items)}</strong>.</p>
+  <ul>
+   <li>حوالي 60% (${essential.toLocaleString('fr-DZ')} دج) للضروريات.</li>
+   <li>حوالي 25% (${important.toLocaleString('fr-DZ')} دج) للاحتياجات المهمة: ${escapeHtml(priority)}.</li>
+   <li>حوالي 15% (${flexible.toLocaleString('fr-DZ')} دج) مرونة أو احتياجات يمكن تأجيلها.</li>
+  </ul>
+  <p>راجع هذه النسب حسب ظروفك الحقيقية؛ إذا كانت لديك حاجة أساسية مستعجلة، أعطها الأولوية.</p>
+  ${notes ? '<p><strong>ملاحظاتك:</strong> ' + escapeHtml(notes) + '</p>' : ''}
+  <p class="small">هذه قسمة إرشادية عامة وليست نصيحة مالية شخصية أو أسعارًا مؤكدة.</p>
+ `;
+});
+
+function escapeHtml(s) {
+ return s.replace(/[&<>"']/g, c => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+ }[c]));
+}
+
+document.querySelectorAll('[data-tab]').forEach(btn => {
+ btn.addEventListener('click', () => {
+  document.querySelectorAll('[data-tab]').forEach(b =>
+   b.classList.toggle('active', b === btn)
+  );
+  ['shop', 'supplier', 'directory'].forEach(n =>
+   $('panel-' + n).classList.toggle('hidden', n !== btn.dataset.tab)
+  );
+ });
+});
+
+function showMessage(id, text, copyId) {
+ $(id).textContent = text;
+ $(id).classList.remove('hidden');
+ $(copyId).classList.remove('hidden');
+}
+
+$('makeShopMsg').addEventListener('click', () => {
+ const name = $('shopName').value.trim();
+ const city = $('shopCity').value.trim();
+ const goods = $('shopGoods').value.trim();
+ const qty = $('shopQty').value.trim();
+
+ if (!name || !goods) {
+  toast('اكتب اسم المحل والمنتجات المطلوبة أولًا.');
+  return;
+ }
+
+ const msg = `طلب توريد عبر شرية SHERYA
+اسم المحل: ${name}
+الولاية/البلدية: ${city || 'غير محدد'}
+المنتجات المطلوبة: ${goods}
+الكمية والتفاصيل: ${qty || 'يرجى التواصل للتفاصيل'}
+هذه رسالة طلب أولية، يرجى تأكيد الأسعار والتوفر وموعد التسليم مباشرة.`;
+
+ showMessage('shopMessage', msg, 'copyShopMsg');
+});
+
+$('makeSupplierMsg').addEventListener('click', () => {
+ const name = $('supplierName').value.trim();
+ const city = $('supplierCity').value.trim();
+ const goods = $('supplierGoods').value.trim();
+ const contact = $('supplierContact').value.trim();
+
+ if (!name || !goods) {
+  toast('اكتب اسم المؤسسة والمنتجات المتوفرة أولًا.');
+  return;
+ }
+
+ const msg = `بطاقة مورد / موزّع — شرية SHERYA
+اسم المؤسسة: ${name}
+منطقة التوزيع: ${city || 'غير محدد'}
+المنتجات: ${goods}
+وسيلة التواصل: ${contact || 'تضاف عند التواصل'}
+يرجى تأكيد الأسعار والتوفر وشروط التوريد مباشرة.`;
+
+ showMessage('supplierMessage', msg, 'copySupplierMsg');
+});
+
+async function copyText(id) {
+ try {
+  await navigator.clipboard.writeText($(id).textContent);
+  toast('تم نسخ النص. يمكنك لصقه في رسالة أو بريد.');
+ } catch (e) {
+  toast('حدّد النص وانسخه يدويًا.');
+ }
+}
+
+$('copyShopMsg').addEventListener('click', () => copyText('shopMessage'));
+$('copySupplierMsg').addEventListener('click', () => copyText('supplierMessage'));
+</script>
+</body>
+</html>
